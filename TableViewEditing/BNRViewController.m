@@ -13,6 +13,12 @@
     NSMutableArray *_items;
 }
 @property (nonatomic, strong) NSMutableArray *items;
+@property (nonatomic, strong) UIBarButtonItem *addToolbarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *flexibleSpace;
+@property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *editToolbarButton;
+@property (nonatomic, strong) UIBarButtonItem *doneToolbarButton;
+
 @end
 
 @implementation BNRViewController
@@ -22,15 +28,35 @@
 {
     [super viewDidLoad];
 
-    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
+    self.navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                                                                   target:self
+                                                                                   action:@selector(addItem:)];
+    self.navItem.rightBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *rightBarButtonItem = self.editButtonItem;
+    self.addToolbarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Add Item"
+                                                                             style:UIBarButtonItemStyleBordered
+                                                                            target:self
+                                                                            action:@selector(addItem:)];
 
-    self.navItem.leftBarButtonItem = leftBarButtonItem;
-    self.navItem.rightBarButtonItem = rightBarButtonItem;
+    self.flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                   target:nil
+                                                                                   action:nil];
+    self.editToolbarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+                                                                                       target:self
+                                                                                       action:@selector(toggleEditingMode:)];
+
+    self.doneToolbarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                       target:self
+                                                                                       action:@selector(toggleEditingMode:)];
+
+    self.rightBarButtonItem = self.isEditing ? self.doneToolbarButton : self.editToolbarButton;
 
     [self setItems:[@[@"Item 1", @"Item 2", @"Item 3"] mutableCopy]];
     [self setEditing:YES animated:YES];
+
+    NSArray *toolbarItems = @[self.addToolbarButtonItem, self.flexibleSpace, self.rightBarButtonItem];
+    [self.toolbar setItems:toolbarItems];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -49,11 +75,26 @@
     if (editing) {
         [self.tableView insertRowsAtIndexPaths:@[ip]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
+        self.rightBarButtonItem = self.doneToolbarButton;
     } else {
         [self.tableView deleteRowsAtIndexPaths:@[ip]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
+        self.rightBarButtonItem = self.editToolbarButton;
     }
+    
+    NSArray *toolbarItems = @[self.addToolbarButtonItem, self.flexibleSpace, self.rightBarButtonItem];
+    [self.toolbar setItems:toolbarItems];
+}
 
+- (void)toggleEditingMode:(id)sender
+{
+    if ([self isEditing]) {
+
+        [self setEditing:NO animated:YES];
+    } else {
+
+        [self setEditing:YES animated:YES];
+    }
 }
 
 - (IBAction)addItem:(id)sender
@@ -87,7 +128,7 @@
 
     NSString *item = nil;
     if (indexPath.row == [self.items count]) {
-        [[cell textLabel] setText:@"Add item"];
+        [[cell textLabel] setText:@"Add Item"];
     } else {
         item = [self.items objectAtIndex:indexPath.row];
         [[cell textLabel] setText:item];
