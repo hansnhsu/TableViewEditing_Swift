@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface BNRViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UINavigationItem *navItem;
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
