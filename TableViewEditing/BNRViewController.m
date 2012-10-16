@@ -43,6 +43,17 @@
 {
     [super setEditing:editing animated:animated];
     [self.tableView setEditing:editing animated:animated];
+
+    NSIndexPath *ip = [NSIndexPath indexPathForRow:[self.items count] inSection:0];
+
+    if (editing) {
+        [self.tableView insertRowsAtIndexPaths:@[ip]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+    } else {
+        [self.tableView deleteRowsAtIndexPaths:@[ip]
+                              withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+
 }
 
 - (IBAction)addItem:(id)sender
@@ -57,7 +68,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.items count] + 1;
+    if ([self.tableView isEditing]) {
+        return [self.items count] + 1;
+    } else {
+        return [self.items count];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
