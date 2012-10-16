@@ -15,9 +15,9 @@
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) UIBarButtonItem *addToolbarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *flexibleSpace;
-@property (nonatomic, strong) UIBarButtonItem *rightBarButtonItem;
-@property (nonatomic, strong) UIBarButtonItem *editToolbarButton;
-@property (nonatomic, strong) UIBarButtonItem *doneToolbarButton;
+@property (nonatomic, strong) UIBarButtonItem *rightToolbarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *editToolbarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *doneToolbarButtonItem;
 
 @end
 
@@ -41,20 +41,20 @@
     self.flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
                                                                                    target:nil
                                                                                    action:nil];
-    self.editToolbarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
+    self.editToolbarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit
                                                                                        target:self
                                                                                        action:@selector(toggleEditingMode:)];
 
-    self.doneToolbarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+    self.doneToolbarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                        target:self
                                                                                        action:@selector(toggleEditingMode:)];
 
-    self.rightBarButtonItem = self.isEditing ? self.doneToolbarButton : self.editToolbarButton;
+    self.rightToolbarButtonItem = self.isEditing ? self.doneToolbarButtonItem : self.editToolbarButtonItem;
 
     [self setItems:[@[@"Item 1", @"Item 2", @"Item 3"] mutableCopy]];
     [self setEditing:YES animated:YES];
 
-    NSArray *toolbarItems = @[self.addToolbarButtonItem, self.flexibleSpace, self.rightBarButtonItem];
+    NSArray *toolbarItems = @[self.addToolbarButtonItem, self.flexibleSpace, self.rightToolbarButtonItem];
     [self.toolbar setItems:toolbarItems];
 
 }
@@ -75,14 +75,14 @@
     if (editing) {
         [self.tableView insertRowsAtIndexPaths:@[ip]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
-        self.rightBarButtonItem = self.doneToolbarButton;
+        self.rightToolbarButtonItem = self.doneToolbarButtonItem;
     } else {
         [self.tableView deleteRowsAtIndexPaths:@[ip]
                               withRowAnimation:UITableViewRowAnimationAutomatic];
-        self.rightBarButtonItem = self.editToolbarButton;
+        self.rightToolbarButtonItem = self.editToolbarButtonItem;
     }
     
-    NSArray *toolbarItems = @[self.addToolbarButtonItem, self.flexibleSpace, self.rightBarButtonItem];
+    NSArray *toolbarItems = @[self.addToolbarButtonItem, self.flexibleSpace, self.rightToolbarButtonItem];
     [self.toolbar setItems:toolbarItems];
 }
 
