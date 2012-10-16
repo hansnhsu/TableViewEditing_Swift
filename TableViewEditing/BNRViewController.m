@@ -49,12 +49,11 @@
                                                                  action:@selector(toggleEditingMode:)];
     [self.editToolbarButtonItem setWidth:50.0];
 
-    [self setItems:[@[@"Item 1", @"Item 2", @"Item 3"] mutableCopy]];
-    [self setEditing:YES animated:YES];
-
     NSArray *toolbarItems = @[self.addToolbarButtonItem, self.flexibleSpace, self.editToolbarButtonItem];
     [self.toolbar setItems:toolbarItems];
 
+    [self setItems:[@[@"Item 1", @"Item 2", @"Item 3"] mutableCopy]];
+    [self setEditing:YES animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -70,14 +69,15 @@
 
     NSIndexPath *ip = [NSIndexPath indexPathForRow:[self.items count] inSection:0];
 
+    UITableViewRowAnimation animation = animated ? UITableViewRowAnimationLeft : UITableViewRowAnimationNone;
     if (editing) {
         [self.tableView insertRowsAtIndexPaths:@[ip]
-                              withRowAnimation:UITableViewRowAnimationFade];
+                              withRowAnimation:animation];
         [self.editToolbarButtonItem setTitle:@"Done"];
         [self.editToolbarButtonItem setStyle:UIBarButtonItemStyleDone];
     } else {
         [self.tableView deleteRowsAtIndexPaths:@[ip]
-                              withRowAnimation:UITableViewRowAnimationFade];
+                              withRowAnimation:animation];
         [self.editToolbarButtonItem setTitle:@"Edit"];
         [self.editToolbarButtonItem setStyle:UIBarButtonItemStyleBordered];
     }
