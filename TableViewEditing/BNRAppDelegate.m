@@ -21,8 +21,6 @@
         self.viewController = [[BNRViewController alloc] initWithNibName:@"BNRViewController_iPhone" bundle:nil];
     } else if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.viewController = [[BNRViewController alloc] initWithNibName:@"BNRViewController_iPad" bundle:nil];
-//    } else {
-//        self.viewController = [[BNRViewController alloc] initWithStyle:UITableViewStylePlain];
     }
 
     self.window.rootViewController = self.viewController;

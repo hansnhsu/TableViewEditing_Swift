@@ -18,31 +18,9 @@
 @implementation BNRViewController
 @synthesize items=_items;
 
-//- (id)init
-//{
-//    return [self initWithStyle:UITableViewStylePlain];
-//}
-//
-//- (id)initWithStyle:(UITableViewStyle)style
-//{
-//    self = [super initWithStyle:style];
-//    if (self) {
-//        _items = [NSMutableArray array];
-//    }
-//
-//    return self;
-//}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-//    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-//    [self.tableView addSubview:navBar];
-//
-//    UINavigationItem *navItem = [[UINavigationItem alloc] initWithTitle:@"TableView Editing"];
-//    [navBar setItems:@[navItem]];
-//    self.navItem = navItem;
 
     UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItem:)];
 
@@ -51,30 +29,9 @@
     self.navItem.leftBarButtonItem = leftBarButtonItem;
     self.navItem.rightBarButtonItem = rightBarButtonItem;
 
-//    UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0
-//                                                                     , self.tableView.frame.size.height - self.tableView.frame.origin.y - 22.0,
-//                                                                     self.tableView.frame.size.width,
-//                                                                     44.0)];
-//    [toolbar setItems:@[leftBarButtonItem, self.editButtonItem]];
-//    [self.tableView addSubview:toolbar];
-//
-//    [self.tableView setSectionFooterHeight:44.0];
-//
-//    [self.tableView setSectionHeaderHeight:44.0];
-
     [self setItems:[@[@"Item 1", @"Item 2", @"Item 3"] mutableCopy]];
     [self setEditing:YES animated:YES];
 }
-
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    if (section == 0) {
-//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 44.0)];
-//        return headerView;
-//    }
-//    return nil;
-//}
-
 
 - (void)didReceiveMemoryWarning
 {
