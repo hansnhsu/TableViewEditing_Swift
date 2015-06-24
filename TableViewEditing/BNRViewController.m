@@ -10,6 +10,7 @@
 //  Additionally, when in Editing mode, a special row is inserted at the end labeled "Add Item" that is tappable to add an item
 
 #import "BNRViewController.h"
+#import "TableViewEditing-Swift.h"
 
 @interface BNRViewController ()
 @property (nonatomic, strong) NSMutableArray *items;
