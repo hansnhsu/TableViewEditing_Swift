@@ -176,22 +176,4 @@
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row >= [self.items count]) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row > [self.items count]) {
-        return NO;
-    } else {
-        return YES;
-    }
-}
-
 @end

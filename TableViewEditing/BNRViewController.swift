@@ -10,6 +10,22 @@ import Foundation
 
 extension BNRViewController : UITableViewDelegate {
 
+    public func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> ObjCBool {
+        if indexPath.row >= self.items.count {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> ObjCBool {
+        if indexPath.row > self.items.count {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String {
         return "Remove"
     }
