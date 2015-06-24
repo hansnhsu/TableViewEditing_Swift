@@ -5,6 +5,9 @@
 //  Created by Hansen Hsu on 10/15/12.
 //  Copyright (c) 2012 Hansen Hsu. All rights reserved.
 //
+//  This sample code provides three user interfaces to edit a tableView
+//  Add and Edit buttons are available in both the navigation controller at top and a toolbar at the bottom
+//  Additionally, when in Editing mode, a special row is inserted at the end labeled "Add Item" that is tappable to add an item
 
 #import "BNRViewController.h"
 
@@ -68,12 +71,12 @@
     UITableViewRowAnimation animation = animated ? UITableViewRowAnimationLeft : UITableViewRowAnimationNone;
     if (editing) {
         [self.tableView insertRowsAtIndexPaths:@[ip]
-                              withRowAnimation:animation];
+                              withRowAnimation:animation];  // Add "Add Item" row when in editing mode
         [self.editToolbarButtonItem setTitle:@"Done"];
         [self.editToolbarButtonItem setStyle:UIBarButtonItemStyleDone];
     } else {
         [self.tableView deleteRowsAtIndexPaths:@[ip]
-                              withRowAnimation:animation];
+                              withRowAnimation:animation];  // Remove "Add Item" row when out of editing mode
         [self.editToolbarButtonItem setTitle:@"Edit"];
         [self.editToolbarButtonItem setStyle:UIBarButtonItemStyleBordered];
     }
@@ -121,7 +124,7 @@
 
     NSString *item = nil;
     if (indexPath.row == [self.items count]) {
-        [[cell textLabel] setText:@"Add Item"];
+        [[cell textLabel] setText:@"Add Item"]; // Final item of tableView when in editing mode allows user to tap to Add Item
     } else {
         item = [self.items objectAtIndex:indexPath.row];
         [[cell textLabel] setText:item];
@@ -136,7 +139,7 @@
     if (indexPath.row < [self.items count]) {
         return UITableViewCellEditingStyleDelete;
     } else {
-        return UITableViewCellEditingStyleInsert;
+        return UITableViewCellEditingStyleInsert;   // Green + button style used for "Add Item" row only
     }
 }
 
@@ -161,7 +164,7 @@
     [self moveItemAtIndex:fromIndexPath.row toIndex:toIndexPath.row];
 }
 
-- (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to
+- (void)moveItemAtIndex:(NSUInteger)from toIndex:(NSUInteger)to
 {
     if (from == to) {
         return;
