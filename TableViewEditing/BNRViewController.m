@@ -9,9 +9,6 @@
 #import "BNRViewController.h"
 
 @interface BNRViewController ()
-{
-    NSMutableArray *_items;
-}
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) UIBarButtonItem *addToolbarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *flexibleSpace;
@@ -20,7 +17,6 @@
 @end
 
 @implementation BNRViewController
-@synthesize items=_items;
 
 - (void)viewDidLoad
 {
@@ -96,7 +92,7 @@
 
 - (IBAction)addItem:(id)sender
 {
-    [self.items addObject:[NSString stringWithFormat:@"Item %d", [self.items count]+1]];
+    [self.items addObject:[NSString stringWithFormat:@"Item %lu", [self.items count]+1]];
 
     NSIndexPath *ip = [NSIndexPath indexPathForRow:[self.items count]-1 inSection:0];
 
@@ -165,7 +161,7 @@
     [self moveItemAtIndex:fromIndexPath.row toIndex:toIndexPath.row];
 }
 
-- (void)moveItemAtIndex:(int)from toIndex:(int)to
+- (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to
 {
     if (from == to) {
         return;
