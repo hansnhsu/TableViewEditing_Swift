@@ -8,9 +8,11 @@
 
 import Foundation
 
-extension BNRViewController : UITableViewDelegate {
+extension BNRViewController : UITableViewDelegate {}
 
-    public func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> ObjCBool {
+public extension BNRViewController {
+
+    func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> ObjCBool {
         if indexPath.row >= self.items.count {
             return false;
         } else {
@@ -18,7 +20,7 @@ extension BNRViewController : UITableViewDelegate {
         }
     }
 
-    public func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> ObjCBool {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> ObjCBool {
         if indexPath.row > self.items.count {
             return false;
         } else {
@@ -26,11 +28,11 @@ extension BNRViewController : UITableViewDelegate {
         }
     }
 
-    public func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String {
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String {
         return "Remove"
     }
 
-    public func tableView(tableView: UITableView,
+    func tableView(tableView: UITableView,
         targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath,
         toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
             if proposedDestinationIndexPath.row >= self.items.count {
