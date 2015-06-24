@@ -6,8 +6,21 @@
 //  Copyright (c) 2015 Hansen Hsu. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
-extension BNRViewController {
-    
+extension BNRViewController : UITableViewDelegate {
+
+    public func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String {
+        return "Remove"
+    }
+
+    public func tableView(tableView: UITableView,
+        targetIndexPathForMoveFromRowAtIndexPath sourceIndexPath: NSIndexPath,
+        toProposedIndexPath proposedDestinationIndexPath: NSIndexPath) -> NSIndexPath {
+            if proposedDestinationIndexPath.row >= self.items.count {
+                return sourceIndexPath
+            } else {
+                return proposedDestinationIndexPath
+            }
+    }
 }

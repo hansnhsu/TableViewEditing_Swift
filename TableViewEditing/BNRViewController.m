@@ -13,7 +13,6 @@
 #import "TableViewEditing-Swift.h"
 
 @interface BNRViewController ()
-@property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, strong) UIBarButtonItem *addToolbarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *flexibleSpace;
 @property (nonatomic, strong) UIBarButtonItem *editToolbarButtonItem;
@@ -193,21 +192,6 @@
     } else {
         return YES;
     }
-}
-
-- (NSIndexPath *)tableView:(UITableView *)tableView
-        targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)sourceIndexPath
-                             toProposedIndexPath:(NSIndexPath *)proposedDestinationIndexPath
-{
-    if (proposedDestinationIndexPath.row >= [self.items count]) {
-        return sourceIndexPath;
-    } else {
-        return proposedDestinationIndexPath;
-    }
-}
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return @"Remove";
 }
 
 @end
