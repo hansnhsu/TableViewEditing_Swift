@@ -19,6 +19,7 @@
 		C05B798D162CB81B00D1B088 /* BNRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C05B798C162CB81B00D1B088 /* BNRViewController.m */; };
 		C05B7990162CB81B00D1B088 /* BNRViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05B798E162CB81B00D1B088 /* BNRViewController_iPhone.xib */; };
 		C05B7993162CB81B00D1B088 /* BNRViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05B7991162CB81B00D1B088 /* BNRViewController_iPad.xib */; };
+		C0ED9BB41B3B638100EEAE2A /* BNRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED9BB31B3B638100EEAE2A /* BNRViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		C05B798C162CB81B00D1B088 /* BNRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNRViewController.m; sourceTree = "<group>"; };
 		C05B798F162CB81B00D1B088 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BNRViewController_iPhone.xib; sourceTree = "<group>"; };
 		C05B7992162CB81B00D1B088 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BNRViewController_iPad.xib; sourceTree = "<group>"; };
+		C0ED9BB21B3B638000EEAE2A /* TableViewEditing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TableViewEditing-Bridging-Header.h"; sourceTree = "<group>"; };
+		C0ED9BB31B3B638100EEAE2A /* BNRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				C05B7983162CB81B00D1B088 /* BNRAppDelegate.m */,
 				C05B798B162CB81B00D1B088 /* BNRViewController.h */,
 				C05B798C162CB81B00D1B088 /* BNRViewController.m */,
+				C0ED9BB31B3B638100EEAE2A /* BNRViewController.swift */,
+				C0ED9BB21B3B638000EEAE2A /* TableViewEditing-Bridging-Header.h */,
 				C05B798E162CB81B00D1B088 /* BNRViewController_iPhone.xib */,
 				C05B7991162CB81B00D1B088 /* BNRViewController_iPad.xib */,
 				C05B797A162CB81B00D1B088 /* Supporting Files */,
@@ -181,6 +186,7 @@
 				C05B7980162CB81B00D1B088 /* main.m in Sources */,
 				C05B7984162CB81B00D1B088 /* BNRAppDelegate.m in Sources */,
 				C05B798D162CB81B00D1B088 /* BNRViewController.m in Sources */,
+				C0ED9BB41B3B638100EEAE2A /* BNRViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,10 +275,16 @@
 		C05B7997162CB81B00D1B088 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TableViewEditing/TableViewEditing-Prefix.pch";
 				INFOPLIST_FILE = "TableViewEditing/TableViewEditing-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableViewEditing/TableViewEditing-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -280,10 +292,15 @@
 		C05B7998162CB81B00D1B088 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TableViewEditing/TableViewEditing-Prefix.pch";
 				INFOPLIST_FILE = "TableViewEditing/TableViewEditing-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "TableViewEditing/TableViewEditing-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -307,6 +324,7 @@
 				C05B7998162CB81B00D1B088 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
