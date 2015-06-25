@@ -8,9 +8,32 @@
 
 import Foundation
 
-extension BNRViewController : UITableViewDelegate {}
+extension BNRViewController : UITableViewDelegate {
+
+}
 
 public extension BNRViewController {
+
+    @IBAction func addItem(sender: AnyObject) -> () {
+        let newItem = NSString(format:"Item %lu", self.items.count+1)
+        self.items.addObject(newItem)
+
+        let ip : NSIndexPath = NSIndexPath(forRow:self.items.count - 1, inSection:0)
+
+        self.tableView.insertRowsAtIndexPaths([ip], withRowAnimation:.Automatic)
+    }
+
+    func tableView(tableView: UITableView,
+        commitEditingStyle editingStyle: UITableViewCellEditingStyle,
+        forRowAtIndexPath indexPath: NSIndexPath) -> () {
+
+            if editingStyle == UITableViewCellEditingStyle.Delete {
+                self.items.removeObjectAtIndex(indexPath.row)
+                self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:.Automatic)
+            } else if editingStyle == UITableViewCellEditingStyle.Insert {
+                self.addItem(self.tableView)
+            }
+    }
 
     func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath,
         toIndexPath: NSIndexPath) -> () {

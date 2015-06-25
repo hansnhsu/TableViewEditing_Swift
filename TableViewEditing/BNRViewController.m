@@ -93,16 +93,6 @@
     }
 }
 
-- (IBAction)addItem:(id)sender
-{
-    [self.items addObject:[NSString stringWithFormat:@"Item %lu", [self.items count]+1]];
-
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:[self.items count]-1 inSection:0];
-
-    [self.tableView insertRowsAtIndexPaths:@[ip]
-                          withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([self.tableView isEditing]) {
@@ -140,21 +130,6 @@
         return UITableViewCellEditingStyleDelete;
     } else {
         return UITableViewCellEditingStyleInsert;   // Green + button style used for "Add Item" row only
-    }
-}
-
-- (void)tableView:(UITableView *)tableView
-    commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-     forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.items removeObjectAtIndex:indexPath.row];
-
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                         withRowAnimation:UITableViewRowAnimationAutomatic];
-        
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        [self addItem:self.tableView];
     }
 }
 
