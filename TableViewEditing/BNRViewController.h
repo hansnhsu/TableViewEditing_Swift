@@ -15,6 +15,8 @@
 
 // Need to declare publicly here to import into Swift -- wish there was a better way
 @property (nonatomic, strong) NSMutableArray *items;
-
+@property (nonatomic, strong) UIBarButtonItem *addToolbarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *flexibleSpace;
+@property (nonatomic, strong) UIBarButtonItem *editToolbarButtonItem;
 
 @end

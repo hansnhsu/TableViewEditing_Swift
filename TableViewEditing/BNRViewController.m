@@ -13,9 +13,6 @@
 #import "TableViewEditing-Swift.h"
 
 @interface BNRViewController ()
-@property (nonatomic, strong) UIBarButtonItem *addToolbarButtonItem;
-@property (nonatomic, strong) UIBarButtonItem *flexibleSpace;
-@property (nonatomic, strong) UIBarButtonItem *editToolbarButtonItem;
 
 @end
 
@@ -59,27 +56,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated
-{
-    [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:animated];
-
-    NSIndexPath *ip = [NSIndexPath indexPathForRow:[self.items count] inSection:0];
-
-    UITableViewRowAnimation animation = animated ? UITableViewRowAnimationLeft : UITableViewRowAnimationNone;
-    if (editing) {
-        [self.tableView insertRowsAtIndexPaths:@[ip]
-                              withRowAnimation:animation];  // Add "Add Item" row when in editing mode
-        [self.editToolbarButtonItem setTitle:@"Done"];
-        [self.editToolbarButtonItem setStyle:UIBarButtonItemStyleDone];
-    } else {
-        [self.tableView deleteRowsAtIndexPaths:@[ip]
-                              withRowAnimation:animation];  // Remove "Add Item" row when out of editing mode
-        [self.editToolbarButtonItem setTitle:@"Edit"];
-        [self.editToolbarButtonItem setStyle:UIBarButtonItemStyleBordered];
-    }
 }
 
 @end

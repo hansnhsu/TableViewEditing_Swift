@@ -14,6 +14,25 @@ extension BNRViewController : UITableViewDelegate {
 
 public extension BNRViewController {
 
+    override func setEditing(editing: Bool, animated: Bool) -> () {
+        super.setEditing(editing, animated:animated)
+        self.tableView.setEditing(editing, animated:animated)
+
+        let ip : NSIndexPath = NSIndexPath(forRow:self.items.count, inSection:0)
+
+        let animation : UITableViewRowAnimation = animated ? UITableViewRowAnimation.Left : UITableViewRowAnimation.None
+
+        if editing {
+            self.tableView.insertRowsAtIndexPaths([ip], withRowAnimation:animation)
+            self.editToolbarButtonItem.title = "Done"
+            self.editToolbarButtonItem.style = UIBarButtonItemStyle.Done
+        } else {
+            self.tableView.deleteRowsAtIndexPaths([ip], withRowAnimation:animation)
+            self.editToolbarButtonItem.title = "Edit"
+            self.editToolbarButtonItem.style = UIBarButtonItemStyle.Bordered
+        }
+    }
+
     func toggleEditingMode(AnyObject) -> () {
         if self.editing {
             self.setEditing(false, animated:true)
