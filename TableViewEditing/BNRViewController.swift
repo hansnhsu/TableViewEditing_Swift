@@ -14,6 +14,14 @@ extension BNRViewController : UITableViewDelegate {
 
 public extension BNRViewController {
 
+    func toggleEditingMode(AnyObject) -> () {
+        if self.editing {
+            self.setEditing(false, animated:true)
+        } else {
+            self.setEditing(true, animated:true)
+        }
+    }
+
     @IBAction func addItem(sender: AnyObject) -> () {
         let newItem = NSString(format:"Item %lu", self.items.count+1)
         self.items.addObject(newItem)
@@ -21,6 +29,23 @@ public extension BNRViewController {
         let ip : NSIndexPath = NSIndexPath(forRow:self.items.count - 1, inSection:0)
 
         self.tableView.insertRowsAtIndexPaths([ip], withRowAnimation:.Automatic)
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.tableView.editing {
+            return self.items.count + 1
+        } else {
+            return self.items.count
+        }
+
+    }
+
+    func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.row < self.items.count {
+            return UITableViewCellEditingStyle.Delete
+        } else {
+            return UITableViewCellEditingStyle.Insert
+        }
     }
 
     func tableView(tableView: UITableView,
@@ -47,8 +72,6 @@ public extension BNRViewController {
             if let item : String = self.items[from] as? String {
                 self.items.removeObjectAtIndex(from)
                 self.items.insertObject(item, atIndex:to)
-            } else {
-                // Do nothing
             }
         }
     }

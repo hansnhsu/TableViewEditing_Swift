@@ -82,26 +82,6 @@
     }
 }
 
-- (void)toggleEditingMode:(id)sender
-{
-    if ([self isEditing]) {
-
-        [self setEditing:NO animated:YES];
-    } else {
-
-        [self setEditing:YES animated:YES];
-    }
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if ([self.tableView isEditing]) {
-        return [self.items count] + 1;
-    } else {
-        return [self.items count];
-    }
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell =
@@ -121,16 +101,6 @@
     }
 
     return cell;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView
-           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row < [self.items count]) {
-        return UITableViewCellEditingStyleDelete;
-    } else {
-        return UITableViewCellEditingStyleInsert;   // Green + button style used for "Add Item" row only
-    }
 }
 
 @end
