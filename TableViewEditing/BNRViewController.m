@@ -158,22 +158,4 @@
     }
 }
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath
-      toIndexPath:(NSIndexPath *)toIndexPath
-{
-    [self moveItemAtIndex:fromIndexPath.row toIndex:toIndexPath.row];
-}
-
-- (void)moveItemAtIndex:(NSUInteger)from toIndex:(NSUInteger)to
-{
-    if (from == to) {
-        return;
-    } else {
-        NSString *item = [self.items objectAtIndex:from];
-
-        [self.items removeObjectAtIndex:from];
-        [self.items insertObject:item atIndex:to];
-    }
-}
-
 @end
