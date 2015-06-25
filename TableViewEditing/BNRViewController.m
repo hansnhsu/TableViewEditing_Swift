@@ -9,10 +9,3 @@
 #import "BNRViewController.h"
 #import "TableViewEditing-Swift.h"
 
-@interface BNRViewController ()
-
-@end
-
-@implementation BNRViewController
-
-@end

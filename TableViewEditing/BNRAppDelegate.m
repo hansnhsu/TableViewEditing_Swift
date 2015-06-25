@@ -7,8 +7,7 @@
 //
 
 #import "BNRAppDelegate.h"
-
-#import "BNRViewController.h"
+#import "TableViewEditing-Swift.h"
 
 @implementation BNRAppDelegate
 

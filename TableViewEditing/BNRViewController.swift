@@ -11,11 +11,37 @@
 
 import Foundation
 
-extension BNRViewController : UITableViewDelegate {
+class BNRViewController: UIViewController, UITableViewDelegate {
 
-}
+    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet var tableView : UITableView!
 
-public extension BNRViewController {
+    lazy private var items : [String] = ["Item 1", "Item 2", "Item 3"]
+    lazy private var addToolbarButtonItem : UIBarButtonItem! = UIBarButtonItem.init(title:"Add Item",
+        style:UIBarButtonItemStyle.Bordered,
+        target:self,
+        action:"addItem:")
+
+    lazy private var flexibleSpace : UIBarButtonItem! = UIBarButtonItem.init(barButtonSystemItem:.FlexibleSpace,
+        target:nil, action:nil)
+
+    // self.editButtonItem is already being used by the navigation bar
+    // so we can't reuse it for the toolbar, otherwise it will disappear from the nav bar
+    // so we have to create our own
+
+    lazy private var editToolbarButtonItem : UIBarButtonItem! = UIBarButtonItem.init(title:"Edit",
+        style:UIBarButtonItemStyle.Bordered,
+        target:self,
+        action:"toggleEditingMode:")
+
+    override init(nibName nibNameOrNil: String?, bundle bundleOrNil: NSBundle?) {
+        super.init(nibName:nibNameOrNil, bundle:bundleOrNil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder:aDecoder)
+    }
 
     override func viewDidLoad() -> () {
         super.viewDidLoad()
@@ -26,27 +52,8 @@ public extension BNRViewController {
 
         self.navItem.rightBarButtonItem = self.editButtonItem()
 
-        self.addToolbarButtonItem = UIBarButtonItem.init(title:"Add Item",
-            style:UIBarButtonItemStyle.Bordered,
-            target:self,
-            action:"addItem:")
-
-        self.flexibleSpace = UIBarButtonItem.init(barButtonSystemItem:.FlexibleSpace,
-            target:nil, action:nil)
-
-        // self.editButtonItem is already being used by the navigation bar
-        // so we can't reuse it for the toolbar, otherwise it will disappear from the nav bar
-        // so we have to create our own
-
-        self.editToolbarButtonItem = UIBarButtonItem.init(title:"Edit",
-            style:UIBarButtonItemStyle.Bordered,
-            target:self,
-            action:"toggleEditingMode:")
-
         self.editToolbarButtonItem.width = 50.0
-
         self.toolbar.items = [self.addToolbarButtonItem, self.flexibleSpace, self.editToolbarButtonItem]
-        self.items = ["Item 1", "Item 2", "Item 3"]
         self.setEditing(true, animated:false)
     }
 
@@ -84,7 +91,7 @@ public extension BNRViewController {
 
     @IBAction func addItem(sender: AnyObject) -> () {
         let newItem = NSString(format:"Item %lu", self.items.count+1)
-        self.items.addObject(newItem)
+        self.items.append(newItem as String)
 
         let ip : NSIndexPath = NSIndexPath(forRow:self.items.count - 1, inSection:0)
 
@@ -111,11 +118,7 @@ public extension BNRViewController {
         if indexPath.row == self.items.count {
             cell.textLabel?.text = "Add Item"  // Final item of tableView when in editing mode allows user to tap to Add Item
         } else {
-            if let item = self.items[indexPath.row] as? String {
-                cell.textLabel?.text = item
-            } else {
-                cell.textLabel?.text = "Item X"
-            }
+            cell.textLabel?.text = self.items[indexPath.row]
         }
         return cell
     }
@@ -133,7 +136,7 @@ public extension BNRViewController {
         forRowAtIndexPath indexPath: NSIndexPath) -> () {
 
             if editingStyle == UITableViewCellEditingStyle.Delete {
-                self.items.removeObjectAtIndex(indexPath.row)
+                self.items.removeAtIndex(indexPath.row)
                 self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation:.Automatic)
             } else if editingStyle == UITableViewCellEditingStyle.Insert {
                 self.addItem(self.tableView)
@@ -149,10 +152,9 @@ public extension BNRViewController {
         if from == to {
             return
         } else {
-            if let item : String = self.items[from] as? String {
-                self.items.removeObjectAtIndex(from)
-                self.items.insertObject(item, atIndex:to)
-            }
+            let item : String = self.items[from]
+            self.items.removeAtIndex(from)
+            self.items.insert(item, atIndex:to)
         }
     }
 
