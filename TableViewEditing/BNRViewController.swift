@@ -40,6 +40,26 @@ public extension BNRViewController {
 
     }
 
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell : UITableViewCell
+        if let c = self.tableView.dequeueReusableCellWithIdentifier("UITableViewCell") as? UITableViewCell {
+            cell = c
+        } else {
+            cell = UITableViewCell(style:UITableViewCellStyle.Default, reuseIdentifier:"UITableViewCell")
+        }
+
+        if indexPath.row == self.items.count {
+            cell.textLabel?.text = "Add Item"  // Final item of tableView when in editing mode allows user to tap to Add Item
+        } else {
+            if let item = self.items[indexPath.row] as? String {
+                cell.textLabel?.text = item
+            } else {
+                cell.textLabel?.text = "Item X"
+            }
+        }
+        return cell
+    }
+
     func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
         if indexPath.row < self.items.count {
             return UITableViewCellEditingStyle.Delete

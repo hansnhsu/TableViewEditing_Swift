@@ -82,25 +82,4 @@
     }
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell =
-        [self.tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
-
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
-                                      reuseIdentifier:@"UITableViewCell"];
-    }
-
-    NSString *item = nil;
-    if (indexPath.row == [self.items count]) {
-        [[cell textLabel] setText:@"Add Item"]; // Final item of tableView when in editing mode allows user to tap to Add Item
-    } else {
-        item = [self.items objectAtIndex:indexPath.row];
-        [[cell textLabel] setText:item];
-    }
-
-    return cell;
-}
-
 @end
