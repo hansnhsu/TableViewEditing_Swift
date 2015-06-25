@@ -16,7 +16,6 @@
 		C05B7986162CB81B00D1B088 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C05B7985162CB81B00D1B088 /* Default.png */; };
 		C05B7988162CB81B00D1B088 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05B7987162CB81B00D1B088 /* Default@2x.png */; };
 		C05B798A162CB81B00D1B088 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C05B7989162CB81B00D1B088 /* Default-568h@2x.png */; };
-		C05B798D162CB81B00D1B088 /* BNRViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C05B798C162CB81B00D1B088 /* BNRViewController.m */; };
 		C05B7990162CB81B00D1B088 /* BNRViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05B798E162CB81B00D1B088 /* BNRViewController_iPhone.xib */; };
 		C05B7993162CB81B00D1B088 /* BNRViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = C05B7991162CB81B00D1B088 /* BNRViewController_iPad.xib */; };
 		C0ED9BB41B3B638100EEAE2A /* BNRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED9BB31B3B638100EEAE2A /* BNRViewController.swift */; };
@@ -36,11 +35,8 @@
 		C05B7985162CB81B00D1B088 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C05B7987162CB81B00D1B088 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C05B7989162CB81B00D1B088 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C05B798B162CB81B00D1B088 /* BNRViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNRViewController.h; sourceTree = "<group>"; };
-		C05B798C162CB81B00D1B088 /* BNRViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNRViewController.m; sourceTree = "<group>"; };
 		C05B798F162CB81B00D1B088 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BNRViewController_iPhone.xib; sourceTree = "<group>"; };
 		C05B7992162CB81B00D1B088 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BNRViewController_iPad.xib; sourceTree = "<group>"; };
-		C0ED9BB21B3B638000EEAE2A /* TableViewEditing-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TableViewEditing-Bridging-Header.h"; sourceTree = "<group>"; };
 		C0ED9BB31B3B638100EEAE2A /* BNRViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BNRViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -90,10 +86,7 @@
 			children = (
 				C05B7982162CB81B00D1B088 /* BNRAppDelegate.h */,
 				C05B7983162CB81B00D1B088 /* BNRAppDelegate.m */,
-				C05B798B162CB81B00D1B088 /* BNRViewController.h */,
-				C05B798C162CB81B00D1B088 /* BNRViewController.m */,
 				C0ED9BB31B3B638100EEAE2A /* BNRViewController.swift */,
-				C0ED9BB21B3B638000EEAE2A /* TableViewEditing-Bridging-Header.h */,
 				C05B798E162CB81B00D1B088 /* BNRViewController_iPhone.xib */,
 				C05B7991162CB81B00D1B088 /* BNRViewController_iPad.xib */,
 				C05B797A162CB81B00D1B088 /* Supporting Files */,
@@ -185,7 +178,6 @@
 			files = (
 				C05B7980162CB81B00D1B088 /* main.m in Sources */,
 				C05B7984162CB81B00D1B088 /* BNRAppDelegate.m in Sources */,
-				C05B798D162CB81B00D1B088 /* BNRViewController.m in Sources */,
 				C0ED9BB41B3B638100EEAE2A /* BNRViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
