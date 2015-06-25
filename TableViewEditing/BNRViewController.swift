@@ -5,6 +5,9 @@
 //  Created by Hansen Hsu on 6/24/15.
 //  Copyright (c) 2015 Hansen Hsu. All rights reserved.
 //
+//  This sample code provides three user interfaces to edit a tableView
+//  Add and Edit buttons are available in both the navigation controller at top and a toolbar at the bottom
+//  Additionally, when in Editing mode, a special row is inserted at the end labeled "Add Item" that is tappable to add an item
 
 import Foundation
 
@@ -13,6 +16,44 @@ extension BNRViewController : UITableViewDelegate {
 }
 
 public extension BNRViewController {
+
+    override func viewDidLoad() -> () {
+        super.viewDidLoad()
+
+        self.navItem.leftBarButtonItem = UIBarButtonItem.init(barButtonSystemItem:.Add,
+            target:self,
+            action:"addItem:")
+
+        self.navItem.rightBarButtonItem = self.editButtonItem()
+
+        self.addToolbarButtonItem = UIBarButtonItem.init(title:"Add Item",
+            style:UIBarButtonItemStyle.Bordered,
+            target:self,
+            action:"addItem:")
+
+        self.flexibleSpace = UIBarButtonItem.init(barButtonSystemItem:.FlexibleSpace,
+            target:nil, action:nil)
+
+        // self.editButtonItem is already being used by the navigation bar
+        // so we can't reuse it for the toolbar, otherwise it will disappear from the nav bar
+        // so we have to create our own
+
+        self.editToolbarButtonItem = UIBarButtonItem.init(title:"Edit",
+            style:UIBarButtonItemStyle.Bordered,
+            target:self,
+            action:"toggleEditingMode:")
+
+        self.editToolbarButtonItem.width = 50.0
+
+        self.toolbar.items = [self.addToolbarButtonItem, self.flexibleSpace, self.editToolbarButtonItem]
+        self.items = ["Item 1", "Item 2", "Item 3"]
+        self.setEditing(true, animated:false)
+    }
+
+    override func didReceiveMemoryWarning() -> () {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 
     override func setEditing(editing: Bool, animated: Bool) -> () {
         super.setEditing(editing, animated:animated)
