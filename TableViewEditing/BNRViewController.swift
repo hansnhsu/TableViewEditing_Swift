@@ -39,7 +39,7 @@ class BNRViewController: UIViewController, UITableViewDelegate {
         super.init(nibName:nibNameOrNil, bundle:bundleOrNil)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
     }
 
@@ -81,7 +81,7 @@ class BNRViewController: UIViewController, UITableViewDelegate {
         }
     }
 
-    func toggleEditingMode(AnyObject) -> () {
+    func toggleEditingMode(_: AnyObject) -> () {
         if self.editing {
             self.setEditing(false, animated:true)
         } else {
@@ -109,7 +109,7 @@ class BNRViewController: UIViewController, UITableViewDelegate {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell : UITableViewCell
-        if let c = self.tableView.dequeueReusableCellWithIdentifier("UITableViewCell") as? UITableViewCell {
+        if let c = self.tableView.dequeueReusableCellWithIdentifier("UITableViewCell") {
             cell = c
         } else {
             cell = UITableViewCell(style:UITableViewCellStyle.Default, reuseIdentifier:"UITableViewCell")
@@ -174,7 +174,7 @@ class BNRViewController: UIViewController, UITableViewDelegate {
         }
     }
 
-    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String {
+    func tableView(tableView: UITableView, titleForDeleteConfirmationButtonForRowAtIndexPath indexPath: NSIndexPath) -> String? {
         return "Remove"
     }
 
