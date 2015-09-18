@@ -135,6 +135,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = BNR;
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Hansen Hsu";
 			};
